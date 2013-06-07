@@ -9,8 +9,13 @@
 	padding: 3px 8px;
 	border-radius: 5px 5px 5px 5px;
 	line-height: 20px;
-	cursor: pointer;
 	float: right;
+}
+
+.FS_rightSpace {
 	margin-right: 5px;
 }
 
+.FS_leftSpace {
+	margin-left: 5px;
+}
