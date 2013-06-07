@@ -1,7 +1,7 @@
 <?php
 /*
 @name ToggleEventContent
-@author forty-six@palladiom.net
+@author Forty-Six
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
 @version 0.1
@@ -15,7 +15,7 @@ function FS_toggleEventContent_AddButton(&$event) {
         $config->getAll();
 
 	if ($config->get('articleDisplayContent') == '1') {
-		echo '<div onClick="javascript:FS_toggleEventContent(\''.$event->getId().'\');" class="pointer FS_toggleEventContent_Button" alt="Toggle the content" title="Toggle the content" id="FS_toggleEventContent_Button_'.$event->getId().'">Toggle on</div>';
+		echo '<div onClick="javascript:FS_toggleEventContent(\''.$event->getId().'\');" class="pointer FS_toggleEventContent_Button FS_rightSpace" alt="Toggle the content" title="Toggle the content" id="FS_toggleEventContent_Button_'.$event->getId().'">Toggle on</div>';
 	}
 }
 
@@ -33,6 +33,7 @@ function FS_toggleEventContent_End(&$event) {
 // Ajouter des balises autour des détails et options de l'article affiché entier
 function FS_toggleEventOptions_Begin (&$event) {
 	echo '<div id="eventOptions_'.$event->getId().'" style="display:none">';
+	echo '<div onClick="javascript:FS_toggleEventContent(\''.$event->getId().'\');" class="pointer FS_toggleEventContent_Button FS_leftSpace" alt="Toggle the content" title="Toggle the content" id="FS_toggleEventContent_Button_'.$event->getId().'">Toggle off</div>';
 }
 function FS_toggleEventOptions_End (&$event) {
 	echo "</div>";
