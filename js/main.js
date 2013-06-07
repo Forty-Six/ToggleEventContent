@@ -1,6 +1,6 @@
 /*
 @name ToggleEventContent
-@author forty-six@palladiom.net
+@author Forty-Six
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
 @version 0.1
