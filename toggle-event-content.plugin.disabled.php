@@ -65,7 +65,6 @@ if ($FS_config->get('articleDisplayContent') == '1') {
 // Insertion du bouton
 Plugin::addHook("event_post_top_options", "FS_toggleEventContent_AddButton");
 
-// Insertion du javascript et du CSS
+// Insertion du javascript
 Plugin::addJs("/js/main.js");
-plugin::addCss("/css/default.css");
 
