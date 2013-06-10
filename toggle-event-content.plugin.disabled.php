@@ -1,10 +1,10 @@
 <?php
 /*
 @name ToggleEventContent
-@author Forty-Six
+@author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.1
+@version 0.2
 @description Ce plugin ajoute un bouton à coté du titre de chaque événement pour en afficher ou non le contenu
 */
 
