@@ -3,28 +3,26 @@
 @author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.2
+@version 0.3
 @description Ce plugin ajoute un bouton à coté du titre de chaque événement pour en afficher ou non le contenu
 */
 
-function FS_toggleEventContent(eventId) {
+function FS_toggleEventContent(element) {
 
     // Affiche / Cache le contenu de l'événement désigné
     // Affiche / Cache les détails de l'événement entier désigné
     
-    var targetEvent;
-    targetEvent = document.getElementById('event_' + eventId);
-    optionsEvent = document.getElementById('eventOptions_' + eventId);
-    eventButton = document.getElementById('FS_toggleEventContent_Button_' + eventId);
+	eventBloc = $(element).parent().parent();
+	eventContent = $('div.articleContent', eventBloc);
+	eventButtons = $('div.FS_toggleEventContent_Button', eventBloc.children('h3.articleDetails'));
+	eventDetails = eventBloc.children('h3.articleDetails:last-child');
 
-    if (targetEvent.style.display == 'none') {
-    	targetEvent.style.display = '';
-    	if (optionsEvent) optionsEvent.style.display = '';
-    	eventButton.innerHTML = "Toggle off";
-    } else {
-    	targetEvent.style.display = 'none';
-    	if (optionsEvent) optionsEvent.style.display = 'none';
-    	eventButton.innerHTML = "Toggle on";
-    }
-
+	if (eventContent.css('display') == 'none') {
+		if (eventDetails) eventDetails.css('display', '');
+		eventButtons.html('Toggle off');
+	} else {
+		eventButtons.html('Toggle on');
+		if (eventDetails) eventDetails.css('display', 'none');
+	}
+	eventContent.slideToggle(200);
 }
