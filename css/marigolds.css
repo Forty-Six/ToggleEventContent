@@ -1,4 +1,3 @@
-
 .FS_toggleEventContent_Button {
 	background-color: #BB46BB;
 	border: 0 none;
@@ -10,12 +9,14 @@
 	border-radius: 5px 5px 5px 5px;
 	line-height: 20px;
 	float: right;
-}
-
-.FS_rightSpace {
-	margin-right: 5px;
-}
-
-.FS_leftSpace {
 	margin-left: 5px;
 }
+
+.FS_toggleEventContent_Button:hover {
+	background-color: #d44dd4;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
