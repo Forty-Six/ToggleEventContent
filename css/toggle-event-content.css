@@ -1,0 +1,3 @@
+#main article section div.articleContent, #main article section h3.articleDetails:last-child {
+	display: none;
+}
