@@ -4,7 +4,7 @@
 @author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.5
+@version 0.5.1
 @description Ce plugin ajoute un bouton à chaque article pour en afficher ou non le contenu
 */
 
@@ -89,12 +89,18 @@ if ( ($FS_config->get('articleDisplayContent') == '1') and ($FS_config->get('art
 	Plugin::addHook("event_pre_bottom_options", "FS_toggleEventContent_AddButton");
 }
 
-// Insertion du lien dans le menu de gestion
-Plugin::addHook("setting_post_link","FS_toggleEventContent_SettingLink");
-// Affichage du menu de gestion
-Plugin::addHook("setting_post_section","FS_toggleEventContent_SettingForm");
-// Mise à jour du choix de l'affichage
-Plugin::addHook("action_post_case", "toggleEventContent_Update"); 
+// Restriction sur la configuration des plugins
+// Issue: https://github.com/ldleman/Leed-market/issues/79
+$myUser = ( isset($_SESSION['currentUser']) ? unserialize($_SESSION['currentUser']) : false );
+
+if ($myUser != false) {
+	// Insertion du lien dans le menu de gestion
+	Plugin::addHook("setting_post_link","FS_toggleEventContent_SettingLink");
+	// Affichage du menu de gestion
+	Plugin::addHook("setting_post_section","FS_toggleEventContent_SettingForm");
+	// Mise à jour du choix de l'affichage
+	Plugin::addHook("action_post_case", "toggleEventContent_Update"); 
+}
 
 // Execution du choix : insertion ou non du CSS
 Plugin::addHook("index_pre_treatment","FS_toggleEventContent_PreTest");
