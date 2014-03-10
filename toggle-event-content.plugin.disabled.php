@@ -4,7 +4,7 @@
 @author Forty-Six <Forty-Six>
 @link https://github.com/Forty-Six
 @licence CC by nc sa http://creativecommons.org/licenses/by-nc-sa/2.0/fr/
-@version 0.5.1
+@version 0.5.2
 @description Ce plugin ajoute un bouton à chaque article pour en afficher ou non le contenu
 */
 
@@ -13,7 +13,7 @@ function FS_toggleEventContent_AddButton(&$event) {
 
 	$toggle = FS_toggleEventContent_getDefault();
 
-	echo '<div onClick="FS_toggleEventContent(this);" class="pointer FS_toggleEventContent_Button" alt="Toggle the content" title="Toggle the content">'.(($toggle == 1) ? _t('P_TOGGLEEVENTCONTENT_BUTTON_ON') : _t('P_TOGGLEEVENTCONTENT_BUTTON_OFF')).'</div>';
+	echo '<div onClick="FS_toggleEventContent(this);" class="pointer FS_toggleEventContent_Button button" alt="Toggle the content" title="Toggle the content">'.(($toggle == 1) ? _t('P_TOGGLEEVENTCONTENT_BUTTON_ON') : _t('P_TOGGLEEVENTCONTENT_BUTTON_OFF')).'</div>';
 }
 
 // Fonction d'ajout d'un lien dans le menu de gestion
@@ -79,13 +79,13 @@ $FS_config->getAll();
 
 // Insertion du bouton 'Haut'
 // si l'affichage du contenu de l'article est demandé
-if ($FS_config->get('articleDisplayContent') == '1') {
+if ($FS_config->get('articleDisplayContent') == '1' or $FS_config->get('articleDisplayMode') != '') {
 	Plugin::addHook("event_pre_top_options", "FS_toggleEventContent_AddButton");
 }
 
 // Insertion du bouton 'Bas'
 // si l'affichage du contenu de l'article * entier * est demandé
-if ( ($FS_config->get('articleDisplayContent') == '1') and ($FS_config->get('articleView') != 'partial') ) {
+if ( ($FS_config->get('articleDisplayContent') == '1' or $FS_config->get('articleDisplayMode') != '') and ($FS_config->get('articleView') != 'partial') ) {
 	Plugin::addHook("event_pre_bottom_options", "FS_toggleEventContent_AddButton");
 }
 
@@ -100,10 +100,10 @@ if ($myUser != false) {
 	Plugin::addHook("setting_post_section","FS_toggleEventContent_SettingForm");
 	// Mise à jour du choix de l'affichage
 	Plugin::addHook("action_post_case", "toggleEventContent_Update"); 
-}
 
-// Execution du choix : insertion ou non du CSS
-Plugin::addHook("index_pre_treatment","FS_toggleEventContent_PreTest");
+	// Execution du choix : insertion ou non du CSS
+	Plugin::addHook("index_pre_treatment","FS_toggleEventContent_PreTest");
+}
 
 // Insertion du javascript
 Plugin::addJs("/js/main.js");
